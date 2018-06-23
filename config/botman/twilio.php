@@ -57,7 +57,7 @@ return [
     | See: https://www.twilio.com/docs/api/twiml/say#attributes-language
     |
     */
-    'language' => 'es',
+    'language' => 'es-ES',
 
     /*
     |--------------------------------------------------------------------------
