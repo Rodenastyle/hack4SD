@@ -3,10 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
+// This is where guests live and sleep
 class House extends Model
 {
-    // This is where guests live and sleep
+    use SoftDeletes;
 
-	protected $fillable = ['name', 'lat', 'lng', 'owner'];
+    protected $guarded = [];
+
+    protected $dates = ['deleted_at'];
 }

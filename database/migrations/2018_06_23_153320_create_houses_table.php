@@ -15,12 +15,12 @@ class CreateHousesTable extends Migration
     {
         Schema::create('houses', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            $table->softDeletes();
             $table->string('name');
             $table->integer('lat');
             $table->integer('lng');
             $table->string('owner');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
