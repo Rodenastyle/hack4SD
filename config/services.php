@@ -35,4 +35,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'dialogflow' => [
+        'key' => env('DIALOGFLOW_TOKEN'),
+    ],
+
 ];
