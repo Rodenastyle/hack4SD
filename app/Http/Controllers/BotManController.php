@@ -17,12 +17,4 @@ class BotManController extends Controller
 
         $botman->listen();
     }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function tinker()
-    {
-        return view('tinker');
-    }
 }
