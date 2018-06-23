@@ -2,6 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LiftBlind;
+use App\Events\EnableOven;
+use App\Events\LowerBlind;
+use App\Events\OpenGarage;
+use App\Events\CloseGarage;
+use App\Events\CreateGuest;
+use App\Events\EnableLight;
+
 class TelegramController extends Controller
 {
     /**
@@ -9,17 +17,54 @@ class TelegramController extends Controller
      */
     public function handle($bot, $something)
     {
-        $extras = $bot->getMessage()->getExtras();
-        info([$something, $extras]);
-        switch ($extras['apiAction']) {
+        $dialogFlow = $bot->getMessage()->getExtras();
+        info([$something, $dialogFlow]);
+        switch ($dialogFlow['apiAction']) {
             case 'isa.rea.create-guest':
-                CreateGuest::dispatch();
+                CreateGuest::dispatch($dialogFlow);
                 break;
 
-            case 'some_other_action':
+            case 'isa.local-trade.near':
                 // dispatch other event
                 break;
+
+            case 'isa.local-trade.best':
+                // dispatch other event
+                break;
+
+            case 'isa.local-trade.cheap':
+                // dispatch other event
+                break;
+
+            case 'isa.domotic.washer':
+                CheckWasher::dispatch($dialogFlow);
+                break;
+
+            case 'isa.domotic.oven-on':
+                EnableOven::dispatch($dialogFlow);
+                break;
+
+            case 'isa.domotic.light':
+                EnableLight::dispatch($dialogFlow);
+                break;
+                
+            case 'isa.domotic.garage-open':
+                OpenGarage::dispatch($dialogFlow);
+                break;
+                
+            case 'isa.domotic.garage-close':
+                CloseGarage::dispatch($dialogFlow);
+                break;
+
+            case 'isa.domotic.blind.up':
+                LiftBlind::dispatch($dialogFlow);
+                break;
+
+            case 'isa.domotic.blind.down':
+                LowerBlind::dispatch($dialogFlow);
+                break;
         }
-        $bot->reply($extras['apiReply']);
+
+        $bot->reply($dialogFlow['apiReply']);
     }
 }
