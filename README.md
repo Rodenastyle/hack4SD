@@ -3,6 +3,8 @@
 
 ## About BotMan Studio
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/m1guelpf/hack4SD.svg?token=467169aafe30632e7e7eb6ca1d5f4d538934667476c6821eb39f8791b8338cf9&ts=1529768286846)](https://greenkeeper.io/)
+
 While BotMan itself is framework agnostic, BotMan is also available as a bundle with the great [Laravel](https://laravel.com) PHP framework. This bundled version is called BotMan Studio and makes your chatbot development experience even better. By providing testing tools, an out of the box web driver implementation and additional tools like an enhanced CLI with driver installation, class generation and configuration support, it speeds up the development significantly.
 
 ## Documentation
