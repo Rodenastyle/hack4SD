@@ -3,6 +3,8 @@
 namespace App\Conversations;
 
 use BotMan\BotMan\Messages\Conversations\Conversation;
+use Twilio\TwiML\TwiML;
+use BotMan\BotMan\Messages\Incoming\Answer;
 
 class CallConversation extends Conversation
 {
@@ -13,6 +15,10 @@ class CallConversation extends Conversation
      */
     public function run()
     {
-        //
+        $answer = $this->ask('Something', function (Answer $answer) {
+            return $answer->getText();
+        }, ['timeout' => 'something']);
+
+        $this->say("Hemos entendido \"$answer\"");
     }
 }
