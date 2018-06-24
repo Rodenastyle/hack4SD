@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return 'IsaHome';
+});
 
 Route::match(['get', 'post'], 'handle', 'InteractionController@botman');
 
