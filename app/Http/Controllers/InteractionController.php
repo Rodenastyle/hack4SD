@@ -32,7 +32,9 @@ class InteractionController extends Controller
 
         $this->dispatchEvent($dialogFlow);
 
-        $bot->reply($dialogFlow['apiReply']);
+        if (! str_contains($dialogFlow['apiReply'], '#')) {
+            $bot->reply($dialogFlow['apiReply']);
+        }
     }
 
     public function twilio(Request $request)
