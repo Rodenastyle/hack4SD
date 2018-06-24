@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'welcome');
+Route::view('/', 'welcome');
 
 Route::match(['get', 'post'], 'handle', 'InteractionController@botman');
 
