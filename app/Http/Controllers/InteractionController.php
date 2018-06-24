@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Twilio\TwiML;
+use App\Guest;
+use Twilio\Twiml;
+use App\Events\CreateGuest;
 use Illuminate\Http\Request;
 use BotMan\BotMan\Middleware\ApiAi;
 use Facades\App\Services\DialogFlowService as DialogFlow;
-use App\Guest;
 
 class InteractionController extends Controller
 {
@@ -57,7 +58,7 @@ class InteractionController extends Controller
         return $response;
     }
 
-    public function call(Guest $guest)
+    public function call(Guest $guest, Request $request)
     {
         $response = new TwiMl;
 
