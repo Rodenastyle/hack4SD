@@ -68,7 +68,7 @@ class InteractionController extends Controller
 
             // $this->dispatchEvent($dialogFlow = $message->getExtras());
 
-            if($dialogFlow['apiAction'] == 'isa.travel.activity') {
+            if ($dialogFlow['apiAction'] == 'isa.travel.activity') {
                 // get activities
                 $activities = Minube::getActivities()->inplode(', ');
 
@@ -76,7 +76,7 @@ class InteractionController extends Controller
             }
 
             $gather = $response->gather(['input' => 'speech', 'language' => 'es-ES']);
-            $gather->say(, ['voice' => 'woman', 'language' => 'es-ES']);
+            $gather->say('', ['voice' => 'woman', 'language' => 'es-ES']);
         } else {
             $response->say("Hola, soy Isabel. Veo que tienes una reserva desde el {$guest->start_date->formatLocalized('%A %d %B %Y')} hasta el  {$guest->end_date->formatLocalized('%A %d %B %Y')}. ¿Qué quieres saber sobre tu destino?", ['voice' => 'woman', 'language' => 'es-ES']);
             $response->gather(['input' => 'speech', 'language' => 'es-ES']);
