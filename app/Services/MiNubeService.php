@@ -12,6 +12,7 @@ use App\House;
 use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Zttp\Zttp;
 
 class MiNubeService
 {
@@ -123,14 +124,14 @@ class MiNubeService
             return collect($this->externalServiceCategoryIdentifiers
                 ->get("privateEstablishments"))
                 ->map(function ($interestPoint) use ($house) {
-                    $response = $this->client->get("/pois", [
+                    $response = Zttp::get("http://papi.minube.com/pois", [
                         "subcategory_id" => $interestPoint,
                         "latitude" => $house->lat,
                         "longitude" => $house->lng,
                         "max_distance" => '40000'
-                    ] + $this->defaultOptions)->getBody();
+                    ] + $this->defaultOptions)->json();
 
-                    return $response['name'];
+                    return $response[0]['name'];
                 });
         });
     }
@@ -159,14 +160,14 @@ class MiNubeService
             return collect($this->externalServiceCategoryIdentifiers
                 ->get("extraordinaryPlaces"))
                 ->map(function ($interestPoint) use ($house) {
-                    $response = $this->client->get("/pois", [
-                        "subcategory_id" => $interestPoint,
-                        "latitude" => $house->lat,
-                        "longitude" => $house->lng,
-                        "max_distance" => '40000'
-                    ] + $this->defaultOptions)->getBody();
+                    $response = Zttp::get("http://papi.minube.com/pois?", [
+                        "subcategory_id" => (string) $interestPoint,
+                        // "latitude" => (string) $house->lat,
+                        // "longitude" => (string) $house->lng,
+                        // "max_distance" => '40000'
+                    ] + $this->defaultOptions)->json();
 
-                    return $response['name'];
+                    return $response[0]['name'];
                 });
         });
     }
