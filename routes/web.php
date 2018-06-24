@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::match(['get', 'post'], '/handle', 'BotManController@handle');
+
+Route::post('/twilio', 'TwilioController@handle');
