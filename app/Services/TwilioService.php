@@ -15,8 +15,8 @@ class TwilioService
         $this->client = new Twilio(config('botman.twilio.sid'), config('botman.twilio.token'));
     }
 
-    public function call($number, $action) : IncomingMessage
+    public function call($number, $action)
     {
-        $this->client->calls->create($userPhone, config('botman.twilio.fromNumber'), ['url' => $action]);
+        $this->client->calls->create($number, config('botman.twilio.fromNumber'), ['url' => $action]);
     }
 }
