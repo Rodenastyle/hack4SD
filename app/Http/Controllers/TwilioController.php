@@ -8,7 +8,7 @@ use App\Conversations\CallConversation;
 use BotMan\BotMan\Middleware\ApiAi;
 use BotMan\BotMan\Messages\Incoming\IncomingMessage;
 
-class TwilioController extends Controller
+class TwilioController extends AbstractProvider
 {
     /**
      * Place your Twilio logic here.
@@ -22,10 +22,12 @@ class TwilioController extends Controller
 
             info([$message]);
 
-            $response->say($message->getExtras()['apiReply']);
+            $this->dispatchEvent($dialogFlow = $message->getExtras());
+
+            $response->say($dialogFlow['apiReply'], ['voice' => 'woman', 'language' => 'es-ES']);
         } else {
-            $gather = $response->gather(['input' => 'speech', 'timeout' => 10]);
-            $gather->say('Di algo para probar. Tienes 10 segundos.');
+            $gather = $response->gather(['input' => 'speech', 'language' => 'es-ES']);
+            $gather->say('Di algo para probar. Tienes 10 segundos.', ['voice' => 'woman', 'language' => 'es-ES']);
         }
 
         return $response;
