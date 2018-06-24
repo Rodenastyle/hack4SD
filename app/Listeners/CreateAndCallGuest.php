@@ -31,5 +31,7 @@ class CreateAndCallGuest
         ]);
 
         Twilio::call($guest->phone, route('call', $guest));
+
+        app('botman')->reply("Vale, ya estoy hablando con $guest->name");
     }
 }

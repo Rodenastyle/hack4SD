@@ -66,11 +66,19 @@ class InteractionController extends Controller
 
             info([$message]);
 
-            $this->dispatchEvent($dialogFlow = $message->getExtras());
+            // $this->dispatchEvent($dialogFlow = $message->getExtras());
 
-            $response->say($dialogFlow['apiReply'], ['voice' => 'woman', 'language' => 'es-ES']);
+            if($dialogFlow['apiAction'] == 'isa.travel.activity') {
+                // get activities
+                $activities = Minube::getActivities()->inplode(', ');
+
+                $response->say(str_replace('#placeholder', $activities, $dialogFlow['apiReply']), ['voice' => 'woman', 'language' => 'es-ES']);
+            }
+
+            $gather = $response->gather(['input' => 'speech', 'language' => 'es-ES']);
+            $gather->say(, ['voice' => 'woman', 'language' => 'es-ES']);
         } else {
-            $gather->say("Hola, soy Isabel. Veo que tienes una reserva desde el {$guest->start_date->formatLocalized('%A %d %B %Y')} hasta el  {$guest->end_date->formatLocalized('%A %d %B %Y')}. Si tienes alguna duda o pregunta no dudes en contactar. Quedo a tu disposición 🙂", ['voice' => 'woman', 'language' => 'es-ES']);
+            $response->say("Hola, soy Isabel. Veo que tienes una reserva desde el {$guest->start_date->formatLocalized('%A %d %B %Y')} hasta el  {$guest->end_date->formatLocalized('%A %d %B %Y')}. ¿Qué quieres saber sobre tu destino?", ['voice' => 'woman', 'language' => 'es-ES']);
             $response->gather(['input' => 'speech', 'language' => 'es-ES']);
         }
 
