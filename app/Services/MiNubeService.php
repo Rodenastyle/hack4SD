@@ -20,7 +20,7 @@ class MiNubeService
 	protected function __construct()
 	{
 		$this->client = new Client([
-			'base_uri' => 'http://papi.minube.com'
+			'base_uri' => 'http://papi.minube.com/'
 		]);
 
 		$this->defaultOptions = [
@@ -50,7 +50,7 @@ class MiNubeService
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
 						"max_distance" => '40'
-					])->getBody();
+					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
 				});
@@ -68,7 +68,7 @@ class MiNubeService
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
 						"max_distance" => '40'
-					])->getBody();
+					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
 				});
@@ -86,7 +86,7 @@ class MiNubeService
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
 						"max_distance" => '40'
-					])->getBody();
+					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
 				});
@@ -104,7 +104,7 @@ class MiNubeService
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
 						"max_distance" => '40'
-					])->getBody();
+					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
 				});
@@ -122,7 +122,7 @@ class MiNubeService
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
 						"max_distance" => '40'
-					])->getBody();
+					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
 				});
@@ -140,7 +140,7 @@ class MiNubeService
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
 						"max_distance" => '40'
-					])->getBody();
+					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
 				});
@@ -158,7 +158,7 @@ class MiNubeService
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
 						"max_distance" => '40'
-					])->getBody();
+					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
 				});
