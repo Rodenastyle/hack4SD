@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'welcome');
 
-Route::match(['get', 'post'], '/handle', 'BotManController@handle');
+Route::match(['get', 'post'], 'handle', 'InteractionController@botman');
 
-Route::post('/twilio', 'TwilioController@handle');
+Route::post('twilio', 'InteractionController@twilio');
