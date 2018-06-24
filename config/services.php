@@ -39,4 +39,8 @@ return [
         'key' => env('DIALOGFLOW_TOKEN'),
     ],
 
+    'minube' => [
+        'key' => env('MINUBE_API_KEY'),
+    ],
+
 ];

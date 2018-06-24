@@ -6,9 +6,10 @@ use App\Guest;
 use Twilio\Twiml;
 use App\Events\CreateGuest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Facades\App\Services\MiNubeService as MiNube;
 use BotMan\BotMan\Middleware\ApiAi;
 use Facades\App\Services\DialogFlowService as DialogFlow;
-use Illuminate\Support\Carbon;
 
 class InteractionController extends Controller
 {
@@ -74,7 +75,7 @@ class InteractionController extends Controller
 
             if ($dialogFlow['apiAction'] == 'isa.travel.activity') {
                 // get activities
-                $activities = MiNubeService::getNearExtraordinaryPlaces($guest->house)->take(3)->inplode(', ');
+                $activities = MiNube::getNearExtraordinaryPlaces($guest->house)->take(3)->inplode(', ');
 
                 $response->say(str_replace('#placeholder', $activities, $dialogFlow['apiReply']), ['voice' => 'woman', 'language' => 'es-ES']);
             }
