@@ -90,6 +90,13 @@ class InteractionController extends Controller
                 return $response;
             }
 
+            if ($dialogFlow['apiAction'] == 'isa.call.bye') {
+                $response->say($dialogFlow['apiReply'], ['voice' => 'woman', 'language' => 'es-ES']);
+                $response->hangup();
+    
+                return $response;
+            }
+
             $gather = $response->gather(['input' => 'speech', 'language' => 'es-ES']);
             $gather->say($dialogFlow['apiReply'], ['voice' => 'woman', 'language' => 'es-ES']);
         } else {
