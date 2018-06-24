@@ -8,6 +8,7 @@ use App\Events\CreateGuest;
 use Illuminate\Http\Request;
 use BotMan\BotMan\Middleware\ApiAi;
 use Facades\App\Services\DialogFlowService as DialogFlow;
+use Illuminate\Support\Carbon;
 
 class InteractionController extends Controller
 {
@@ -67,19 +68,25 @@ class InteractionController extends Controller
 
             info([$message]);
 
+            $dialogFlow = $message->getExtras();
+
             // $this->dispatchEvent($dialogFlow = $message->getExtras());
 
             if ($dialogFlow['apiAction'] == 'isa.travel.activity') {
                 // get activities
-                $activities = Minube::getActivities()->inplode(', ');
+                $activities = MiNubeService::getNearExtraordinaryPlaces($guest->house)->take(3)->inplode(', ');
 
                 $response->say(str_replace('#placeholder', $activities, $dialogFlow['apiReply']), ['voice' => 'woman', 'language' => 'es-ES']);
             }
 
+            if ($dialogFlow['apiAction'] == 'isa.mock.bakery') {
+                $response->say($dialogFlow['apiReply'], ['voice' => 'woman', 'language' => 'es-ES']);
+            }
+
             $gather = $response->gather(['input' => 'speech', 'language' => 'es-ES']);
-            $gather->say('', ['voice' => 'woman', 'language' => 'es-ES']);
+            $gather->say($dialogFlow['apiReply'], ['voice' => 'woman', 'language' => 'es-ES']);
         } else {
-            $response->say("Hola, soy Isabel. Veo que tienes una reserva desde el {$guest->start_date->formatLocalized('%A %d %B %Y')} hasta el  {$guest->end_date->formatLocalized('%A %d %B %Y')}. ¿Qué quieres saber sobre tu destino?", ['voice' => 'woman', 'language' => 'es-ES']);
+            $response->say("Hola, soy Isabel. Veo que tienes una reserva en {$guest->house->name }. ¿Qué quieres saber sobre tu destino?", ['voice' => 'woman', 'language' => 'es-ES']);
             $response->gather(['input' => 'speech', 'language' => 'es-ES']);
         }
 
