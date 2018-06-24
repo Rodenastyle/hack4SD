@@ -22,8 +22,6 @@ class CreateGuestsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();
-
-            $table->foreign('house_id')->references('id')->on('house')->onDelete('cascade');
         });
     }
 
