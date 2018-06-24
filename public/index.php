@@ -8,6 +8,8 @@
  */
 
 define('LARAVEL_START', microtime(true));
+setlocale(LC_TIME, 'ES');
+
 
 /*
 |--------------------------------------------------------------------------

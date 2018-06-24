@@ -12,7 +12,7 @@ class CreateHouseCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:house {{--N|name= : The name of the house}} {{--A|adress= : The adress of the house}} {{--O|owner= : The owner of the house }}';
+    protected $signature = 'make:house {{--N|name= : The name of the house}} {{--A|adress= : The adress of the house}} {{--T|owner_tel= : The phone of the owner of the house }} {{--M|owner_msg= : The telegram handle of the owner of the house }}';
 
     /**
      * The console command description.
@@ -38,7 +38,8 @@ class CreateHouseCommand extends Command
             return [$coordinates['results'][0]['geometry']['location']['lat'], $coordinates['results'][0]['geometry']['location']['lng']];
         });
 
-        $house->owner = $this->option('owner') ?? $this->ask('¿Quién es el dueño de la casa?');
+        $house->owner_phone = $this->option('owner_tel') ?? $this->ask('¿Cuál es el teléfono del dueño de la casa?');
+        $house->owner_telegram = $this->option('owner_msg') ?? $this->ask('¿Cuál es el telegram del dueño de la casa?');
 
         $house->save();
     }

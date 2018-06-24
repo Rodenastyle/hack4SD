@@ -17,3 +17,5 @@ Route::get('/', function () {
 Route::match(['get', 'post'], 'handle', 'InteractionController@botman');
 
 Route::post('twilio', 'InteractionController@twilio');
+
+Route::post('call', 'InteractionController@call')->name('call');
