@@ -6,7 +6,6 @@ use Twilio\TwiML;
 use Illuminate\Http\Request;
 use BotMan\BotMan\Middleware\ApiAi;
 use Facades\App\Services\DialogFlowService as DialogFlow;
-use Facades\App\Services\TwilioService as Twilio;
 use App\Guest;
 
 class InteractionController extends Controller
@@ -56,12 +55,8 @@ class InteractionController extends Controller
         return $response;
     }
 
-    public function call()
+    public function call(Guest $guest)
     {
-        // called with Twilio::call($userPhone, route('call'));
-
-        $guest = Guest::where('phone', $request->input('Caller'))->firstOrFail();
-
         $response = new TwiMl;
 
         if ($request->has('SpeechResult')) {
