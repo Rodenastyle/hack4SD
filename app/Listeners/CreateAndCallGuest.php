@@ -20,11 +20,11 @@ class CreateAndCallGuest
      */
     public function handle(CreateGuest $event)
     {
-        $data = $event->getData();
+        $data = $event->getData()['apiParameters'];
 
         $guest = Guest::create([
             'name'       => $data['name'],
-            'phone'      => $data['phone-number'],
+            'phone'      => starts_with($number = $data['phone-number'], '+34') ? $number : '+34'.$number,
             'start_date' => Carbon::parse($data['date-check-in']),
             'end_date'   => Carbon::parse($data['date-check-out']),
             'house_id'   => House::first()->id,
