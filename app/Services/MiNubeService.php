@@ -49,7 +49,7 @@ class MiNubeService
 						"subcategory_id" => $interestPoint,
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
-						"max_distance" => '40'
+						"max_distance" => '40000'
 					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
@@ -67,7 +67,7 @@ class MiNubeService
 						"subcategory_id" => $interestPoint,
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
-						"max_distance" => '40'
+						"max_distance" => '40000'
 					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
@@ -85,7 +85,7 @@ class MiNubeService
 						"subcategory_id" => $interestPoint,
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
-						"max_distance" => '40'
+						"max_distance" => '40000'
 					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
@@ -103,7 +103,7 @@ class MiNubeService
 						"subcategory_id" => $interestPoint,
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
-						"max_distance" => '40'
+						"max_distance" => '40000'
 					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
@@ -121,7 +121,7 @@ class MiNubeService
 						"subcategory_id" => $interestPoint,
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
-						"max_distance" => '40'
+						"max_distance" => '40000'
 					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
@@ -139,7 +139,7 @@ class MiNubeService
 						"subcategory_id" => $interestPoint,
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
-						"max_distance" => '40'
+						"max_distance" => '40000'
 					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
@@ -157,7 +157,7 @@ class MiNubeService
 						"subcategory_id" => $interestPoint,
 						"latitude" => $house->lat,
 						"longitude" => $house->lng,
-						"max_distance" => '40'
+						"max_distance" => '40000'
 					] + $this->defaultOptions)->getBody();
 
 					return $response['name'];
