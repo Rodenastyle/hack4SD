@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use App\Events\CreateGuest;
+use App\Listeners\CreateAndCallGuest;
+use App\Events\CreateHouse;
+use App\Listeners\CacheHouseNearPointsOfInterest;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -13,8 +17,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\CreateHouse' => [
-            'App\Listeners\CacheHouseNearPointsOfInterest',
+        CreateHouse::class => [
+            CacheHouseNearPointsOfInterest::class,
+        ],
+        CreateGuest::class => [
+            CreateAndCallGuest::class,
         ],
     ];
 
