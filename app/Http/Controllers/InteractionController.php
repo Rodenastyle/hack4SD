@@ -75,13 +75,19 @@ class InteractionController extends Controller
 
             if ($dialogFlow['apiAction'] == 'isa.travel.activity') {
                 // get activities
-                $activities = MiNube::getNearExtraordinaryPlaces($guest->house)->take(3)->inplode(', ');
+                $activities = MiNube::getNearExtraordinaryPlaces($guest->house)->take(3)->implode(', ');
 
                 $response->say(str_replace('#placeholder', $activities, $dialogFlow['apiReply']), ['voice' => 'woman', 'language' => 'es-ES']);
-            }
+                $gather = $response->gather(['input' => 'speech', 'language' => 'es-ES']);
 
+                return $response;
+            }
+            
             if ($dialogFlow['apiAction'] == 'isa.mock.bakery') {
                 $response->say($dialogFlow['apiReply'], ['voice' => 'woman', 'language' => 'es-ES']);
+                $gather = $response->gather(['input' => 'speech', 'language' => 'es-ES']);
+    
+                return $response;
             }
 
             $gather = $response->gather(['input' => 'speech', 'language' => 'es-ES']);
